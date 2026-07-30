@@ -10,7 +10,4 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    allowedHosts: ["wisconsin-between-budgets-plumbing.trycloudflare.com"],
-  },
 });

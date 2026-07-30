@@ -43,7 +43,7 @@ Siga as intruções do repositorio para inciar o servidor: https://github.com/Re
 
 ### 5. Define a URL do servidor (WebSocket) na ".env" como demonstrado no ".env.example"
 ```bash
-VITE_WS_URL=wss://tales-april-pst-behavioral.trycloudflare.com/
+VITE_WS_URL=wss://your-server.up.railway.app
 ```
 
 Acesse:
@@ -62,7 +62,9 @@ Dispositivos iOS **não permitem acesso ao giroscópio** quando a aplicação es
 
 Para que o **giroscópio funcione corretamente no iPhone**, é necessário expor o projeto usando **HTTPS**.
 
-### ✔ Solução recomendada: Cloudflared
+Em **produção** (deploy no Vercel) isso já é resolvido automaticamente — o domínio do Vercel serve tudo em HTTPS.
+
+### Testando localmente em iOS antes do deploy
 
 ```bash
 cloudflared tunnel --url http://localhost:5173
@@ -73,7 +75,14 @@ Após isso:
 - O Safari solicitará permissão de movimento
 - O giroscópio funcionará corretamente
 
-> Essa etapa é necessária apenas para testes locais em dispositivos iOS.
+> Essa etapa só é necessária para testes locais em dispositivos iOS, não em produção.
+
+---
+
+## 🚀 Deploy em produção
+
+- **Frontend:** Vercel detecta o projeto Vite automaticamente (`npm run build`, saída em `dist/`, dois entry points: `index.html` e `controller.html`). Configure a env var `VITE_WS_URL` no painel do projeto apontando para a URL `wss://` do servidor implantado.
+- **Servidor WebSocket:** ver deploy no Railway em [duck-hunt-multiplayer-server](https://github.com/Renan-ag/duck-hunt-multiplayer-server).
 
 ---
 

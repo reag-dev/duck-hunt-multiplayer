@@ -206,6 +206,8 @@ export function gameScene() {
   };
 
   network.onMessage(async (msg) => {
+    if (gameManager.isGamePaused) return;
+
     if (msg.type === "input") {
       handlePlayerInput(msg.playerId, msg.payload, shotAction);
     }

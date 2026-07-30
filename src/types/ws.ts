@@ -5,7 +5,8 @@ export type ServerMessage =
   | { type: "input"; playerId: number; payload: PlayerInput }
   | { type: "joined-room"; playerId: number; rejoinToken: string }
   | { type: "error"; message: string }
-  | { type: "rejoined-room"; playerId: number };
+  | { type: "rejoined-room"; playerId: number }
+  | { type: "room-closed" };
 
 export type PlayerInput = {
   gamma?: number;

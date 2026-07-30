@@ -5,7 +5,7 @@ export class NetworkManager<TMessage = unknown> {
   private queue: unknown[] = [];
   private handlers: MessageHandler<TMessage>[] = [];
 
-  constructor(url: string) {
+  constructor(url: string, onStatusChange?: (text: string) => void) {
     this.socket = new WebSocket(url);
 
     this.socket.onopen = () => {
@@ -20,6 +20,11 @@ export class NetworkManager<TMessage = unknown> {
 
     this.socket.onerror = (err) => {
       console.error("WebSocket error", err);
+      onStatusChange?.("Erro de conexão com o servidor");
+    };
+
+    this.socket.onclose = () => {
+      onStatusChange?.("Conexão com o servidor perdida");
     };
   }
 

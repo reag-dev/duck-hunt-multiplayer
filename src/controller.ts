@@ -155,6 +155,16 @@ window.onload = () => {
       return;
     }
 
+    if (msg.type === "room-closed") {
+      localStorage.removeItem("rejoinToken");
+      localStorage.removeItem("roomId");
+
+      updateStatus("Sala encerrada pelo host");
+      shootBtn && (shootBtn.style.display = "none");
+      recalibrateBtn && (recalibrateBtn.style.display = "none");
+      return;
+    }
+
     if (msg.type === "error") {
       updateStatus(msg.message);
 

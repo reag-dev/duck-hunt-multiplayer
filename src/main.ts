@@ -12,7 +12,15 @@ import { gameManager } from "./gameManager";
 import { showToast } from "./helpers/toast";
 import type { Player } from "./types/player";
 
-export const network = new NetworkManager<ServerMessage>(WS_URL);
+if (!WS_URL) {
+  document.body.innerHTML =
+    "<h1>Erro de configuração: VITE_WS_URL não definida</h1>";
+  throw new Error("VITE_WS_URL is not set");
+}
+
+export const network = new NetworkManager<ServerMessage>(WS_URL, (text) =>
+  showToast(text, 4000),
+);
 
 export const players = new Map<number, Player>();
 
@@ -41,7 +49,6 @@ network.onMessage(async (msg) => {
       cursor,
       targetX: k.center().x,
       targetY: k.center().y,
-      score: 0,
     });
   }
 

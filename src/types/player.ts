@@ -4,5 +4,4 @@ export type Player = {
   cursor: GameObj;
   targetX: number;
   targetY: number;
-  score: number;
 };

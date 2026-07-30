@@ -53,7 +53,7 @@ network.onMessage(async (msg) => {
   }
 
   if (msg.type === "input") {
-    if (gameManager.state !== "menu")
+    if (gameManager.state !== "menu" && !gameManager.isGamePaused)
       handlePlayerInput(msg.playerId, msg.payload);
 
     if (gameManager.state === "menu") {

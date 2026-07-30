@@ -1,5 +1,5 @@
 ---
-status: not started
+status: DONE — all 7 phases complete 2026-07-30. Live: frontend https://duck-hunt-multiplayer-gamma.vercel.app, server wss://duck-hunt-multiplayer-server-production.up.railway.app. E2E WS protocol test passed (create-room/join-room/input relay). Only unverified item: real-device iOS gyroscope check (needs a physical phone).
 created: 2026-07-30
 scope: frontend client repo (this dir) + sibling server repo
 ---

@@ -21,7 +21,6 @@ window.onload = () => {
     2: { bg: "#0c4a6e", primary: "#38bdf8", text: "#082f49" },
     3: { bg: "#713f12", primary: "#facc15", text: "#422006" },
     4: { bg: "#4c1d95", primary: "#a78bfa", text: "#2e1065" },
-    5: { bg: "#7c2d12", primary: "#fb923c", text: "#431407" },
   };
 
   const statusElement = document.getElementById("status");

@@ -1,5 +1,6 @@
 import type { GameObj } from "kaplay";
 import { k } from "./lib/kaplayCtx";
+import { MAX_PLAYERS } from "./constants";
 
 function makeGameManager() {
   return k.add([
@@ -15,19 +16,19 @@ function makeGameManager() {
     ]),
     {
       isGamePaused: false,
-      currentScore: [0, 0, 0, 0],
+      currentScore: new Array(MAX_PLAYERS).fill(0),
       currentRoundNumber: 0,
       currentHuntNumber: 0,
-      numberBulletsLeft: [3, 3, 3, 3],
+      numberBulletsLeft: new Array(MAX_PLAYERS).fill(3),
       numberDucksShotInRound: 0,
       finalRound: 3,
       preySpeed: 65,
       resetGameState(this: GameObj) {
         this.isGamePaused = false;
-        this.currentScore = [0, 0, 0, 0];
+        this.currentScore = new Array(MAX_PLAYERS).fill(0);
         this.currentRoundNumber = 0;
         this.currentHuntNumber = 0;
-        this.numberBulletsLeft = [3, 3, 3, 3];
+        this.numberBulletsLeft = new Array(MAX_PLAYERS).fill(3);
         this.numberDucksShotInRound = 0;
         this.preySpeed = 65;
       },

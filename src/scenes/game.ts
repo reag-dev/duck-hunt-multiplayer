@@ -1,5 +1,5 @@
 import type { GameObj } from "kaplay";
-import { COLORS, fontConfig, PLAYER_COLORS } from "../constants";
+import { COLORS, fontConfig, MAX_PLAYERS, PLAYER_COLORS } from "../constants";
 import { makeDog } from "../entities/dog";
 import { makeDuck } from "../entities/duck";
 import { gameManager } from "../gameManager";
@@ -71,7 +71,7 @@ export function gameScene() {
 
   const bulletUIMasks: Array<GameObj> = [];
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < MAX_PLAYERS; i++) {
     bulletUIMasks.push(
       k.add([
         k.rect(0, 8),
@@ -148,7 +148,6 @@ export function gameScene() {
   });
 
   const duckEscapedController = gameManager.onStateEnter("duck-escaped", () => {
-    console.log(gameManager.numberBulletsLeft);
     for (let i = 0; i < gameManager.numberBulletsLeft.length; i++) {
       gameManager.numberBulletsLeft[i] = 3;
     }

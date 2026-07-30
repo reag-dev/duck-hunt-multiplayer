@@ -11,6 +11,8 @@ export const fontConfig = {
   size: 8,
 };
 
+export const MAX_PLAYERS = 4;
+
 export const PLAYER_COLORS: Record<number, string> = {
   1: "#23B85A",
   2: "#38B2E8",

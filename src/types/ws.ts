@@ -11,4 +11,5 @@ export type PlayerInput = {
   gamma?: number;
   beta?: number;
   shoot?: boolean;
+  recalibrate?: boolean;
 };

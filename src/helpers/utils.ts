@@ -1,5 +1,6 @@
 import { k } from "../lib/kaplayCtx";
 import { players } from "../main";
+import type { PlayerInput } from "../types/ws";
 
 export function formatScore(score: number, nbDigits: number) {
   return score.toString().padStart(nbDigits, "0");
@@ -7,12 +8,7 @@ export function formatScore(score: number, nbDigits: number) {
 
 export function handlePlayerInput(
   playerId: number,
-  payload: {
-    gamma?: number;
-    beta?: number;
-    shoot?: boolean;
-    recalibrate?: boolean;
-  },
+  payload: PlayerInput,
   shoot?: (playerId: number) => void,
 ) {
   const player = players.get(playerId);

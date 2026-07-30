@@ -8,6 +8,6 @@ export const k = kaplay({
   touchToMouse: true,
   scale: 4,
   pixelDensity: devicePixelRatio,
-  debug: true,
+  debug: import.meta.env.DEV,
   global: false,
 });

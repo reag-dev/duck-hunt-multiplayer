@@ -57,9 +57,4 @@ export function mainMenu() {
     k.pos(k.center().x, 184),
     k.color(COLORS.red),
   ]);
-
-  // Debug without connect player
-  // k.onKeyPress(() => {
-  //   k.go("game");
-  // });
 }

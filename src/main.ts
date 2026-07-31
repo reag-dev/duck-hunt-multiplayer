@@ -7,7 +7,7 @@ import { gameOver } from "./scenes/game-over";
 import { mainMenu } from "./scenes/main-menu";
 import { NetworkManager } from "./socket/network-manager";
 import { PLAYER_COLORS, WS_URL } from "./constants";
-import { handlePlayerInput } from "./helpers/utils";
+import { handlePlayerInput, handleShot } from "./helpers/utils";
 import { gameManager } from "./gameManager";
 import { showToast } from "./helpers/toast";
 import type { Player } from "./types/player";
@@ -53,11 +53,10 @@ network.onMessage(async (msg) => {
   }
 
   if (msg.type === "input") {
-    if (gameManager.state !== "menu" && !gameManager.isGamePaused)
-      handlePlayerInput(msg.playerId, msg.payload);
-
     if (gameManager.state === "menu") {
       if (msg.payload.shoot) k.go("game");
+    } else if (!gameManager.isGamePaused) {
+      handlePlayerInput(msg.playerId, msg.payload, handleShot);
     }
   }
 

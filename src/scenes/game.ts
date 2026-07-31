@@ -4,8 +4,8 @@ import { makeDog } from "../entities/dog";
 import { makeDuck } from "../entities/duck";
 import { gameManager } from "../gameManager";
 import { k } from "../lib/kaplayCtx";
-import { network, players } from "../main";
-import { formatScore, handlePlayerInput } from "../helpers/utils";
+import { players } from "../main";
+import { formatScore } from "../helpers/utils";
 
 export function gameScene() {
   k.add([k.rect(k.width(), k.height()), k.color(COLORS.blue), "sky"]);
@@ -179,38 +179,6 @@ export function gameScene() {
       k.z(3),
       `cursor-${index}`,
     ]);
-  });
-
-  const shotAction = (playerId: number) => {
-    if (
-      gameManager.state !== "hunt-start" ||
-      gameManager.numberBulletsLeft[playerId - 1] <= 0
-    )
-      return;
-
-    k.play("gun-shot", { volume: 0.5 });
-    gameManager.numberBulletsLeft[playerId - 1]--;
-
-    const player = players.get(playerId);
-    if (!player) return;
-
-    const cursorPos = player.cursor.pos;
-
-    const duck = k.get("duck")[0];
-    if (!duck || !duck.area || duck.hasBeenShot) return;
-
-    if (duck.hasPoint(cursorPos)) {
-      duck.huntedBy = playerId;
-      duck.isAlive = false;
-    }
-  };
-
-  network.onMessage(async (msg) => {
-    if (gameManager.isGamePaused) return;
-
-    if (msg.type === "input") {
-      handlePlayerInput(msg.playerId, msg.payload, shotAction);
-    }
   });
 
   k.onUpdate(() => {

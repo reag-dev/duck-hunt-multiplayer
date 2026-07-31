@@ -38,19 +38,21 @@ npm install
 npm run dev
 ```
 
-### 4. Inicie o servidor Web Socket 
+### 4. Inicie o servidor Web Socket
+
 ```bash
 Siga as intruções do repositorio para inciar o servidor: https://github.com/reag-dev/duck-hunt-multiplayer-server
 ```
 
 ### 5. Define a URL do servidor (WebSocket) na ".env" como demonstrado no ".env.example"
+
 ```bash
 VITE_WS_URL=wss://your-server.up.railway.app
 ```
 
 Acesse:
 
-- **Host:** http://localhost:5173  
+- **Host:** http://localhost:5173
 - **Controller:** http://localhost:5173/controller.html
 
 ---
@@ -73,6 +75,7 @@ cloudflared tunnel --url http://localhost:5173
 ```
 
 Após isso:
+
 - Acesse o **link HTTPS gerado** no iPhone
 - O Safari solicitará permissão de movimento
 - O giroscópio funcionará corretamente

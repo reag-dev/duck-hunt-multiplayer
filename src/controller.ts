@@ -47,6 +47,12 @@ window.onload = () => {
     if (statusElement) statusElement.textContent = text;
   }
 
+  function setControlsVisible(visible: boolean) {
+    const display = visible ? "block" : "none";
+    if (shootBtn) shootBtn.style.display = display;
+    if (recalibrateBtn) recalibrateBtn.style.display = display;
+  }
+
   function applyTheme(playerId: number) {
     const t = PLAYER_THEMES[playerId];
     if (!t) return;
@@ -133,8 +139,7 @@ window.onload = () => {
       if (titleEl) titleEl.textContent = `Player ${playerId}`;
       updateStatus("Controle pronto");
 
-      shootBtn && (shootBtn.style.display = "block");
-      recalibrateBtn && (recalibrateBtn.style.display = "block");
+      setControlsVisible(true);
 
       applyTheme(playerId);
       vibrate(50);
@@ -147,8 +152,7 @@ window.onload = () => {
       if (titleEl) titleEl.textContent = `Player ${playerId}`;
       updateStatus("Reconectado");
 
-      shootBtn && (shootBtn.style.display = "block");
-      recalibrateBtn && (recalibrateBtn.style.display = "block");
+      setControlsVisible(true);
 
       applyTheme(playerId);
       vibrate(30);
@@ -160,8 +164,7 @@ window.onload = () => {
       localStorage.removeItem("roomId");
 
       updateStatus("Sala encerrada pelo host");
-      shootBtn && (shootBtn.style.display = "none");
-      recalibrateBtn && (recalibrateBtn.style.display = "none");
+      setControlsVisible(false);
       return;
     }
 
